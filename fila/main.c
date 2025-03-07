@@ -18,7 +18,7 @@ void setFila(Fila *fila, uint16_t comprimento){
 }
 
 void enqueue(Fila *fila, uint16_t valor){
-    if(fila->indice != 4){
+    if(fila->indice != fila->comprimento){
         *(fila->fim) = valor;
         fila->fim++;
         fila->indice++;
@@ -38,7 +38,7 @@ void dequeue(Fila *fila){
 }
 
 void imprimirFila(Fila *fila){
-    for (size_t i = 0; i < 4; i++){
+    for (size_t i = 0; i < fila->comprimento; i++){
         printf(" %" PRIu16 " | ", *fila->inicio);
         fila->inicio++;
     }
@@ -50,13 +50,13 @@ int main(){
     Fila fila;
     setFila(&fila, 5);
 
-    enqueue(&fila, 4);
     enqueue(&fila, 1);
+    enqueue(&fila, 2);
     enqueue(&fila, 3);
-    enqueue(&fila, 8);
-
+    enqueue(&fila, 4);
+    enqueue(&fila, 5);
+    dequeue(&fila);
     imprimirFila(&fila);
 
-    
     return 0;
 }
