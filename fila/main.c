@@ -10,14 +10,14 @@ typedef struct Fila {
     uint16_t indice;
 } Fila;
 
-void setFila(Fila *fila, uint16_t comprimento){
+void setFila(Fila *fila, const uint16_t comprimento){
     fila->indice = 0;
     fila->comprimento = comprimento;
     fila->inicio = (int16_t*)malloc(fila->comprimento * sizeof(uint16_t));
     fila->fim = fila->inicio;
 }
 
-void enqueue(Fila *fila, uint16_t valor){
+void enqueue(Fila *fila, const uint16_t valor){
     if(fila->indice != fila->comprimento){
         *(fila->fim) = valor;
         fila->fim++;
@@ -55,7 +55,6 @@ int main(){
     enqueue(&fila, 3);
     enqueue(&fila, 4);
     enqueue(&fila, 5);
-    dequeue(&fila);
     imprimirFila(&fila);
 
     return 0;
